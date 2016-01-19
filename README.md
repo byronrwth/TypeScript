@@ -1,0 +1,2 @@
+# TypeScript
+follow TypeScript tutorial

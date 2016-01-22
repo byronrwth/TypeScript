@@ -1,4 +1,4 @@
-
+import {HeroDetailComponent} from './hero-detail.components';
 import {Hero} from './hero' ;
 import { Component } from 'angular2/core';
 //import { MyTitle } from './my-title/my-title';
@@ -21,6 +21,7 @@ import { Component } from 'angular2/core';
             <span class="badge">{{hero.id}}</span> {{hero.name}}
             </li>
         </ul>
+        <my-hero-detail [hero]="selectedHero"></my-hero-detail>
       `
     ,  
     styles:[`

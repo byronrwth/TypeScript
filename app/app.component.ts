@@ -1,10 +1,11 @@
-import {HeroDetailComponent} from './hero-detail.components';
-import {Hero} from './hero' ;
-import { Component } from 'angular2/core';
-import {HeroService} from './hero.service';
+import { HeroDetailComponent } from './hero-detail.components';
+import { Hero } from './hero' ;
+import { Component ,OnInit } from 'angular2/core';
+import { HeroService } from './hero.service';
 //import { MyTitle } from './my-title/my-title';
 
 
+//import {OnInit} from 'angular2/core';
 
 
 @Component({
@@ -72,18 +73,30 @@ import {HeroService} from './hero.service';
     margin-right: .8em;
     border-radius: 4px 0px 0px 4px;
   }
-  `]
+  `],
+  directives: [HeroDetailComponent],
+  providers: [HeroService]
 })
 
 
 
-export class AppComponent {
+export class AppComponent implements OnInit{
   public title = 'Tour of Heroes';
-  public heroes = Hero[];
+  //public heroes = Hero[];
+  public heroes : Hero[];
   public selectedHero: Hero;
 
     constructor(private _heroService: HeroService) { }
 
   onSelect(hero: Hero) { this.selectedHero = hero; }
+   
+    getHeroes() {
+    //this.heroes = this._heroService.getHeroes();
+    this._heroService.getHeroes().then(heroes => this.heroes = heroes);
+  }
+  
+    ngOnInit() {
+        this.getHeroes();
+  }
 }
 
